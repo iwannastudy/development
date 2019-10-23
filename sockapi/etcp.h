@@ -28,5 +28,14 @@ SOCKET udp_client(char *host, char *port,
 int readn(SOCKET fd, char *buf, size_t len);
 int readvrec(SOCKET fd, char *buf, size_t len);
 int readline(SOCKET fd, char *buf, size_t len);
+int inetConnect(const char *host, const char *service, int type);
+int inetListen(const char *service, int backlog, socklen_t *addrlen);
+int inetBind(const char *service, int type, socklen_t *addrlen);
+char *inetAddressStr(const struct sockaddr *addr, socklen_t addrlen, char *addrStr, int addrStrLen);
+
+#define IS_ADDR_STR_LEN 4096
+                        /* suggested length for string buffer that caller
+                         * should pass to inetAddressStr(). Must be greater
+                         * than (NI_MAXHOST + NI_MAXSERV + 4)*/
 
 #endif
